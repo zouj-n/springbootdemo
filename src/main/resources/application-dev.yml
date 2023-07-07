@@ -1,0 +1,15 @@
+server:
+  port: 31001
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db:3306/db_dev?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+    username: 123
+    password: 123
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+
+login:
+  authentication:
+    provider: other
+

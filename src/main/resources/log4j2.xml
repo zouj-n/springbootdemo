@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="LOG_BASE_PATH">/home/logs/springbootdemo</Property>
+        <Property name="FILE_DATE_PATTERN">%d{yyyy-MM-dd}</Property>
+        <Property name="CONSOLE_LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p] [%t] %c{1} - %m%n</Property>
+        <Property name="FILE_LOG_PATTERN">%d [%p]%m %n </Property>
+    </Properties>
+    <Appenders>
+        <Console name="DEFAULT" target="SYSTEM_OUT" follow="true">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${CONSOLE_LOG_PATTERN}"/>
+        </Console>
+        <RollingFile
+                name="ROLLING_FILE"
+                ignoreExceptions="false"
+                fileName="${LOG_BASE_PATH}/springbootdemoall.log"
+                filePattern="${LOG_BASE_PATH}/springbootdemoall.log.${FILE_DATE_PATTERN}"
+                append="true">
+            <PatternLayout pattern="${FILE_LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="DEFAULT" />
+        </Root>
+        <Logger name="org.springframework" level="ERROR" additivity="false">
+            <AppenderRef ref="DEFAULT" />
+            <AppenderRef ref="ROLLING_FILE" />
+        </Logger>
+        <Logger name="com.june" level="INFO" additivity="false">
+            <AppenderRef ref="DEFAULT" />
+            <AppenderRef ref="ROLLING_FILE" />
+        </Logger>
+    </Loggers>
+</Configuration>

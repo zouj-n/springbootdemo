@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: springbootdemo
+  profiles:
+    active: dev
+  security:
+    user:
+      name: 123
+      password: 123
+
+server:
+  port: 31001
+  servlet:
+    context-path: /${spring.application.name}
+
+swagger: #http://localhost:31001/springbootdemo/swagger-ui/index.html#
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: description
+  host: http://localhost:${server.port}
+
+logging: #config: classpath:log4j2.yml
+  level:
+    root: error
+    com.june: INFO
+
+login:
+  authentication:
+    provider: desktop
+
+mybatis: #扫描mapper配置文件(当mapper文件与接口不在同一个包下时使用)
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration: #打印mybatis日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
