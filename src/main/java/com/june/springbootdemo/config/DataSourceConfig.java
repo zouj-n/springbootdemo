@@ -26,8 +26,6 @@ public class DataSourceConfig {
     private String password;
     @Value("${login.authentication.provider}")
     private String authenticationType;
-    @Value("${apikey.test.url}")
-    private String apiKeyTestUrl;
 
     @Bean
     @Primary
@@ -51,10 +49,5 @@ public class DataSourceConfig {
     @Bean
     public String authenticationType() {
         return authenticationType;
-    }
-
-    @Bean
-    public String apiKeyTestUrl() {
-        return apiKeyTestUrl;
     }
 }
